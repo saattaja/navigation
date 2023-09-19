@@ -17,8 +17,8 @@ export default function App() {
         name="Home"
         component={HomeScreen}
         options={{
-          title: 'Home1',
-          headerTitle: 'Home2',
+          title: 'Home',
+          headerTitle: 'Home',
         }}>
         </Stack.Screen>
 

@@ -1,12 +1,23 @@
-import React, { useEffect } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useEffect, useLayoutEffect } from "react";
+import { StyleSheet, View, Text, BackHandler } from "react-native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function SecondScreen(route, navigation){
+export default function SecondScreen({route, navigation}){
     useEffect(() => {
         if (route.params?.message){
             alert(route.params.message);
         }
+        BackHandler.addEventListener('hardwareBackPress',close);
+        return()=>{
+            BackHandler.removeEventListener('hardwareBackPress', close);
+        }
     }, [])
+
+    function close(){
+        navigation.goBack(null);
+        return true;
+    }
 
     useLayoutEffect(() => {
         navigation.setOptions({

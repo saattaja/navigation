@@ -1,29 +1,30 @@
 import React, { useLayoutEffect, useState } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
-import { AntDesing } from '@expo/vector-icons'
+import { AntDesign } from '@expo/vector-icons'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function HomeScreen({navigation}){
-const [message, setMessage] = useState('Testing');
-
+    const [message, setMessage] = useState('Testing');
     useLayoutEffect(() => {
         navigation.setOptions({
             headerStyle: {
                 backgroundColor: '#f0f0f0'
             },
             headerRight: () => (
-                <AntDesing
+                <AntDesign
                 style={styles.navButton}
                 name="arrowright"
                 size={24}
                 onPress={()=> navigation.navigate('Second', {message: message})}>
-                </AntDesing>
+                </AntDesign>
             )
         })
     },[message])
     return (
         <View style={styles.container}>
             <Text>Homer screen {message}</Text>
-            <TextInput onChange={text=>setMessage(text)} value={message} placeholder="Type message here"></TextInput>
+            <TextInput onChangeText={text=>setMessage(text)} value={message} placeholder="Type message here"></TextInput>
         </View>
     );
 }
